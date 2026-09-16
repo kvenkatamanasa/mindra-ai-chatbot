@@ -1,0 +1,564 @@
+@import "tailwindcss";
+
+/* =========================================================
+   TAILWIND DARK MODE
+   Uses the application's .dark class
+   ========================================================= */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* =========================================================
+   MINDRA AI CHATBOT THEME
+   ========================================================= */
+
+:root {
+  --chat-bg: #f8fafc;
+  --chat-surface: #ffffff;
+  --chat-border: #e2e8f0;
+  --chat-text: #0f172a;
+  --chat-muted: #64748b;
+  --chat-accent: #111827;
+}
+
+.dark {
+  --chat-bg: #020617;
+  --chat-surface: #0f172a;
+  --chat-border: #1e293b;
+  --chat-text: #f8fafc;
+  --chat-muted: #94a3b8;
+  --chat-accent: #ffffff;
+}
+
+/* =========================================================
+   BASE PAGE
+   ========================================================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  background: var(--chat-bg);
+  color: var(--chat-text);
+
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Prevent unwanted horizontal scrolling */
+body {
+  overflow-x: hidden;
+}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+.dark * {
+  scrollbar-color: #334155 transparent;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:not(:disabled) {
+  transition:
+    transform 0.15s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+button:not(:disabled):active {
+  transform: scale(0.97);
+}
+
+/* =========================================================
+   INPUT / TEXTAREA / SELECT FOCUS
+   ========================================================= */
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   CHAT HEADER
+   ========================================================= */
+
+header {
+  position: relative;
+  z-index: 20;
+
+  background: color-mix(
+    in srgb,
+    var(--chat-surface) 90%,
+    transparent
+  );
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+aside {
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+aside button {
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+/* =========================================================
+   MESSAGE AREA
+   ========================================================= */
+
+.message-container {
+  animation: messageAppear 0.25s ease-out;
+}
+
+@keyframes messageAppear {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   USER MESSAGE
+   ========================================================= */
+
+.user-message {
+  background: linear-gradient(
+    135deg,
+    #111827,
+    #374151
+  );
+
+  color: white;
+
+  border-radius: 20px 20px 5px 20px;
+
+  box-shadow:
+    0 8px 24px rgba(15, 23, 42, 0.12);
+}
+
+/* =========================================================
+   AI MESSAGE
+   ========================================================= */
+
+.ai-message {
+  border-radius: 20px;
+
+  background: color-mix(
+    in srgb,
+    var(--chat-surface) 94%,
+    var(--chat-bg)
+  );
+
+  border: 1px solid var(--chat-border);
+
+  box-shadow:
+    0 6px 20px rgba(15, 23, 42, 0.04);
+}
+
+/* =========================================================
+   CHAT INPUT CONTAINER
+   ========================================================= */
+
+.chat-input-container {
+  background: color-mix(
+    in srgb,
+    var(--chat-surface) 94%,
+    transparent
+  );
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  box-shadow:
+    0 -10px 30px rgba(15, 23, 42, 0.04);
+}
+
+/* =========================================================
+   CHAT INPUT
+   ========================================================= */
+
+.chat-input {
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.chat-input:focus {
+  border-color: #6366f1 !important;
+
+  box-shadow:
+    0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+/* =========================================================
+   SEND BUTTON
+   ========================================================= */
+
+.send-button {
+  background: linear-gradient(
+    135deg,
+    #111827,
+    #374151
+  );
+
+  box-shadow:
+    0 6px 16px rgba(15, 23, 42, 0.18);
+}
+
+.send-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 8px 20px rgba(15, 23, 42, 0.24);
+}
+
+/* =========================================================
+   STOP BUTTON
+   ========================================================= */
+
+.stop-button {
+  box-shadow:
+    0 6px 16px rgba(220, 38, 38, 0.2);
+}
+
+.stop-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   SETTINGS MODAL
+   ========================================================= */
+
+.settings-overlay {
+  animation: fadeIn 0.2s ease-out;
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.settings-modal {
+  animation: modalAppear 0.25s ease-out;
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.25);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* =========================================================
+   TOGGLE SWITCH
+   ========================================================= */
+
+.toggle-switch {
+  position: relative;
+
+  width: 46px;
+  height: 26px;
+
+  border-radius: 999px;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.toggle-switch.active {
+  background: #111827;
+
+  box-shadow:
+    0 3px 10px rgba(15, 23, 42, 0.2);
+}
+
+.dark .toggle-switch.active {
+  background: #ffffff;
+}
+
+.toggle-switch-thumb {
+  position: absolute;
+
+  top: 3px;
+  left: 3px;
+
+  width: 20px;
+  height: 20px;
+
+  border-radius: 50%;
+
+  background: white;
+
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.toggle-switch.active .toggle-switch-thumb {
+  transform: translateX(20px);
+}
+
+.dark .toggle-switch.active .toggle-switch-thumb {
+  background: #111827;
+}
+
+/* =========================================================
+   CODE BLOCKS
+   ========================================================= */
+
+pre {
+  border-radius: 14px;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+  overflow-x: auto;
+}
+
+code {
+  font-family:
+    "JetBrains Mono",
+    "Fira Code",
+    Consolas,
+    monospace;
+}
+
+/* =========================================================
+   LOADING / THINKING
+   ========================================================= */
+
+.thinking {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 5px;
+}
+
+.thinking-dot {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: #64748b;
+
+  animation: thinkingPulse 1.2s infinite;
+}
+
+.thinking-dot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.thinking-dot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes thinkingPulse {
+  0%,
+  60%,
+  100% {
+    opacity: 0.25;
+    transform: translateY(0);
+  }
+
+  30% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+/* =========================================================
+   EMPTY CHAT
+   ========================================================= */
+
+.empty-chat-icon {
+  animation: floatingBot 3s ease-in-out infinite;
+}
+
+@keyframes floatingBot {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* =========================================================
+   SUGGESTION CARDS
+   ========================================================= */
+
+.suggestion-card {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.suggestion-card:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 22px rgba(15, 23, 42, 0.08);
+
+  border-color: #cbd5e1;
+}
+
+.dark .suggestion-card:hover {
+  border-color: #475569;
+
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.25);
+}
+
+/* =========================================================
+   TEXTAREA
+   ========================================================= */
+
+textarea {
+  resize: none;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+  textarea {
+    font-size: 16px !important;
+  }
+
+  .ai-message,
+  .user-message {
+    border-radius: 17px;
+  }
+
+  header {
+    height: 60px;
+  }
+
+  .chat-input-container {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .ai-message,
+  .user-message {
+    max-width: 85%;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
